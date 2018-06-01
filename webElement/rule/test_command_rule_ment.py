@@ -54,6 +54,7 @@ class CommandRule(object):
 
 	u'''点击添加'''
 	def click_add_button(self):
+		time.sleep(1)
 		self.frameElem.from_frame_to_otherFrame("rigthFrame")
 		self.getElem.find_element_wait_and_click_EC("classname", "btn_tj")
 

@@ -3,9 +3,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+sys.path.append("/testIsomp/common/")
+from _initDriver import initDriver
 #导入登录
 sys.path.append("/testIsomp/testCase/login")
-from test_login import *
+from test_login import testLogin
 
 sys.path.append("/testIsomp/webElement/user/")
 from userElement import UserPage

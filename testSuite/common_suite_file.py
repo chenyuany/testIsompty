@@ -135,7 +135,7 @@ class CommonSuiteData():
                 levelText2 : 二级模块名称
     '''     
     def switch_to_moudle(self,levelText1,levelText2):
-        time.sleep(1)
+        time.sleep(2)
         self.frameElem.from_frame_to_otherFrame("topFrame")
         
         self.cmf.select_menu(levelText1)
@@ -196,8 +196,7 @@ class CommonSuiteData():
                 roleText : 用户角色
     '''
     def set_user_basic_info(self,data,roleText):
-        
-#        self.cmf.select_menu(u"运维管理",u"用户")
+
         self.frameElem.from_frame_to_otherFrame("mainFrame")
         self.userElem.add_button()
         self.userElem.set_user_account(data[3])
@@ -236,6 +235,7 @@ class CommonSuiteData():
     
     u'''用户退出'''
     def user_quit(self):
+        time.sleep(2)
         self.loginElem.quit()
     
 #-----------------------------部门--------------------------------------------
@@ -361,14 +361,12 @@ class CommonSuiteData():
                 data[3]:部门
     '''
     def set_resource_info(self,data):
-        self.switch_to_moudle(u"运维管理",u"资源")
         self.frameElem.from_frame_to_otherFrame("mainFrame")
         self.resource.click_add_edit_button()
         self.resource.select_resource_type(data[0])
         self.resource.set_resource_name(data[1])
         self.resource.set_resource_ip(data[2])
         if data[3] != 'no':
-            time.sleep(5)
             self.resource.set_depart(data[3])
         #选择协议
         if data[4] != "":
@@ -399,8 +397,7 @@ class CommonSuiteData():
         
         self.resource.click_save_button()
         self.cmf.click_login_msg_button()
-        time.sleep(3)
-#        self.driver.implicitly_wait(3)
+        time.sleep(2)
         self.cmf.back()
     
     u'''填写数据库基本信息'''
@@ -590,6 +587,7 @@ class CommonSuiteData():
     
     u'''添加用户数据模板'''
     def add_user_data_module(self,rowList):
+        time.sleep(2)
         self.switch_to_moudle(u"运维管理",u"用户")
         user_data = self.get_table_data("add_user")
         for dataRow in rowList:
@@ -668,6 +666,7 @@ class CommonSuiteData():
         
     u'''添加认证配置'''
     def add_meth_method(self):
+        time.sleep(1)
         meth_data = self.get_table_data("meth_method")
         methData = meth_data[1]
         
@@ -677,6 +676,7 @@ class CommonSuiteData():
     
     u'''会话配置,设置最大登录数'''
     def set_login_max_num(self):
+        time.sleep(1)
         self.loginElem.set_max_login_count()
     
     u'''添加登录测试数据'''
@@ -717,6 +717,9 @@ class CommonSuiteData():
     
     u'''增加资源数据模板'''
     def add_resource_modele(self,rowList):
+        time.sleep(2)
+        #切换到资源
+        self.switch_to_moudle(u"运维管理", u"资源")
         res_data = self.get_table_data("add_res")
         for dataRow in rowList:
             data = res_data[dataRow]
@@ -792,6 +795,7 @@ class CommonSuiteData():
 
     u'''添加授权'''
     def add_authrization(self, rowList):
+        time.sleep(2)
         auth_data = self.get_table_data("add_authorization")
         for dataRow in rowList:
             data = auth_data[dataRow]
@@ -855,13 +859,13 @@ class CommonSuiteData():
 
     u'''删除用户数据模板'''
     def del_user_data_module(self,rowList):
+        time.sleep(2)
         self.switch_to_moudle(u"运维管理",u"用户")
         self.frameElem.from_frame_to_otherFrame("mainFrame")
         user_data = self.get_table_data("add_user")
         for dataRow in rowList:
             data = user_data[dataRow]
             if dataRow != 0:
-                self.switch_to_moudle(u"运维管理",u"用户")
                 self.userElem.operate_delete(data[1])
                 self.frameElem.switch_to_content()
                 self.cmf.click_login_msg_button()
@@ -904,6 +908,7 @@ class CommonSuiteData():
 
     u'''删除资源数据模板'''
     def del_resource_modele(self,rowList):
+        time.sleep(2)
         self.switch_to_moudle(u"运维管理", u"资源")
         self.frameElem.from_frame_to_otherFrame("mainFrame")
         res_data = self.get_table_data("add_res")
@@ -917,6 +922,7 @@ class CommonSuiteData():
 
     u'''删除授权数据模板'''
     def del_authorization_module(self,rowList):
+        time.sleep(2)
         self.switch_to_moudle(u'运维管理', u'授权')
         self.frameElem.from_frame_to_otherFrame("mainFrame")
         autho_data = self.get_table_data("add_account_auth")
@@ -977,12 +983,10 @@ class CommonSuiteData():
         self.login_and_switch_to_sys()
         #配置认证方式
         self.add_meth_method()
-        self.user_quit()
-        self.login_and_switch_to_sys()
         #配置最大登录数
         self.set_login_max_num()
         #添加登录用户数据
-        self.add_user_data_module([27,28,29,30,31,32])
+        self.add_user_data_module([27,28,31,32])
         #改变a的状态为关
         self.userElem.change_user_status_off("gyrlogin2")
         #系统管理员退出
@@ -991,29 +995,23 @@ class CommonSuiteData():
     u'''登录模块后置条件'''
     def login_module_post_condition(self):
         self.isomper_login()
-        self.del_user_data_module([27,28,29,30,31,32])
+        self.del_user_data_module([27,28,31,32])
     
 #------------------------------授权前置条件-----------------------------------
     def authori_module_prefix_condition(self):
-#        self.module_common_prefix_condition()
-#        self.add_user_with_role()
-#        self.user_quit()
 
         self.login_and_switch_to_dep()
         self.add_resource_modele([15,16])
         self.add_res_account_module([18,19])
         #添加授权用户
-        self.add_user_data_module([33,34,35,36,37])
-
-        #self.add_authorization_user()
-
+        self.add_user_data_module([33,34,35])
         self.add_res_group([1])
         self.add_user_group([1])
 
         self.switch_to_moudle(u'运维管理',u'授权')
         
     def authori_module_post_condition(self):
-        self.del_user_data_module([33,34,35,36,37])
+        self.del_user_data_module([33,34,35])
         self.del_resource_modele([15,16])
         self.del_res_group([1])
         self.del_user_group([1])
@@ -1144,8 +1142,6 @@ class CommonSuiteData():
         self.add_res_account_module([1,2,4,5,6,7])
         self.add_authorization_module([1])
         self.switch_to_operation()
-        #self.user_quit()
-        #self.login_and_switch_to_common()
     
     u'''单点登录后置条件'''
     def sso_post_condition(self):
@@ -1163,13 +1159,10 @@ class CommonSuiteData():
         self.add_meth_method()
         self.add_user_data_module([42])
         self.sys_switch_to_dep()
-        #self.login_and_switch_to_dep()
         self.add_resource_modele([2,7,8])
         self.add_res_account_module([3,9,10])
         self.add_authorization_module([3,4])
         self.switch_to_operation()
-        #self.user_quit()
-        #self.login_and_switch_to_common()
     
     u'''单点登录后置条件'''
     def windows_sso_post_condition(self):
@@ -1276,8 +1269,6 @@ class CommonSuiteData():
     def regroup_module_prefix_condition(self):
         #使用添加的用户登录并切换至部门级角色
         self.login_and_switch_to_dep()
-        #切换到资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         #添加资源
         self.add_resource_modele([9,6])
         #切换到组织定义
@@ -1311,14 +1302,10 @@ class CommonSuiteData():
         self.add_user_data_module([21,22,23,24])
         #切换至部门级角色
         self.sys_switch_to_dep()
-        #切换到资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         #添加资源
         self.add_resource_modele([11,12])
         #添加资源账号
         self.add_res_account_module([15,16])
-        #切换到授权
-        self.switch_to_moudle(u'运维管理', u'授权')
         self.add_authrization([1])
 
     def process_module_post_condition(self):
@@ -1340,14 +1327,11 @@ class CommonSuiteData():
         self.add_user_data_module([25])
         #切换至部门级角色
         self.sys_switch_to_dep()
-        #切换到资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         #添加资源
         self.add_resource_modele([13])
         #添加资源账号
         self.add_res_account_module([17])
-        #切换到授权
-        self.switch_to_moudle(u'运维管理', u'授权')
+        #添加授权
         self.add_authrization([4])
 
     def dualmandate_module_post_condition(self):
@@ -1369,14 +1353,10 @@ class CommonSuiteData():
         self.add_user_data_module([7])
         #切换至部门级角色
         self.sys_switch_to_dep()
-        #切换到资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         #添加资源
         self.add_resource_modele([3])
         #添加资源账号
         self.add_res_account_module([4])
-        #切换到授权
-        self.switch_to_moudle(u'运维管理', u'授权')
         self.add_authorization_module([2])
         #切换到规则定义
         self.switch_to_moudle(u'运维管理', u'规则定义')
@@ -1396,7 +1376,7 @@ class CommonSuiteData():
         #使用公共的用户登录并切换至系统级角色
         self.login_and_switch_to_sys()
         #添加用户
-        self.add_user_data_module([8,9,10,11,12])
+        self.add_user_data_module([8,9,10,11])
         #切换至部门级角色
         self.sys_switch_to_dep()
         #切换到规则定义
@@ -1407,7 +1387,7 @@ class CommonSuiteData():
         #切换至系统级角色
         self.dep_switch_to_sys()
         #删除用户
-        self.del_user_data_module([8,9,10,11,12])
+        self.del_user_data_module([8,9,10,11])
         self.user_quit()
 
 #------------------------------地址规则前置条件-----------------------------------
@@ -1415,7 +1395,7 @@ class CommonSuiteData():
         #使用公共的用户登录并切换至系统级角色
         self.login_and_switch_to_sys()
         #添加用户
-        self.add_user_data_module([13,14,15,16,17,18,19,20])
+        self.add_user_data_module([13,14,15,16])
         #切换至部门级角色
         self.sys_switch_to_dep()
         #切换到规则定义
@@ -1425,21 +1405,17 @@ class CommonSuiteData():
     def addressrule_module_post_condition(self):
         #切换至系统级角色
         self.dep_switch_to_sys()
-        self.del_user_data_module([13,14,15,16,17,18,19,20])
+        self.del_user_data_module([13,14,15,16])
         self.user_quit()
 
 #------------------------------资源时间规则前置条件-----------------------------------
     def retimerule_module_prefix_condition(self):
         #使用添加的用户登录并切换至部门级角色
         self.login_and_switch_to_dep()
-        #切换到资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         #添加资源
         self.add_resource_modele([4, 5, 10])
         #添加资源账号
         self.add_res_account_module([5, 6, 14])
-        #切换到授权
-        self.switch_to_moudle(u'运维管理', u'授权')
         self.add_authorization_module([6])
         #切换到规则定义
         self.switch_to_moudle(u'运维管理', u'规则定义')
@@ -1524,11 +1500,9 @@ class CommonSuiteData():
         #使用新用户登录并切换到系统级
         self.login_and_switch_to_dep()
         #添加资源
-        self.switch_to_moudle(u"运维管理", u"资源")
         self.add_resource_modele([14])
         #添加用户
         self.dep_switch_to_sys()
-        self.switch_to_moudle(u"运维管理", u"用户") 
         self.add_user_data_module([26])
         #切换到系统级
         self.dep_switch_to_sys()
@@ -1536,12 +1510,10 @@ class CommonSuiteData():
 
     def pwdstr_module_post_condition(self):
         #删除添加的资源
-        self.sys_switch_to_dep() 
-        self.switch_to_moudle(u"运维管理", u"资源")
+        self.sys_switch_to_dep()
         self.del_one_resource("测试密码策略")
         #删除添加的用户
         self.dep_switch_to_sys()
-        self.switch_to_moudle(u"运维管理", u"用户") 
         self.del_user_data_module([26])
         self.user_quit()
 
@@ -1585,32 +1557,3 @@ class CommonSuiteData():
 
     def passwd_envelope_module_post_condition(self):
         self.user_quit()
-
-#if __name__ == "__main__":
-#    driver = setDriver().set_local_driver()
-#    commonDataElem =  CommonSuiteData(driver)
-#    commonDataElem.authori_module_prefix_condition()
-#    commonDataElem.authori_module_post_condition()
-#    commonDataElem.isomper_login()
-#    commonDataElem.add_sys_role()
-#    commonDataElem.add_dep_role()
-#    commonDataElem.add_login_data()
-#    commonDataElem.add_user_with_role()
-#    commonDataElem.user_quit()
-#    commonDataElem.login_and_switch_to_sys()
-#    commonDataElem.add_login_data()
-#    commonDataElem.login_and_switch_to_dep()
-#    commonDataElem.add_res_group()
-#    commonDataElem.del_res_group()
-#    
-#    commonDataElem.add_user_group()
-#    commonDataElem.del_user_group()
-
-#
-#    commonDataElem.login_and_switch_to_dep()
-#    commonDataElem.add_resource()
-#    commonDataElem.del_resource()
-#    commonDataElem.add_dep()
-#    commonDataElem.del_dep()
-#    commonDataElem.add_meth_method()
-#    commonDataElem.set_login_max_num()

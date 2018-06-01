@@ -336,12 +336,13 @@ class PasswordStr():
             try:
                 #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.commonsuite.sys_switch_to_dep()
                     self.switch_to_resource_module()
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.resource_edit(data[2])
                     self.PwdStr.set_resource_strategy(data[8])
-                    self.resource.click_save_button()
+                    self.resource.resoure_save_button()
                     self.frameElem.switch_to_content()
                     self.cmf.test_win_check_point("xpath", saveMsg, data, flag)
                     self.PwdStr.return_button()
@@ -364,6 +365,7 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.PwdStr.account_manage(data[2])
                     self.account.click_account_add()
                     self.PwdStr.set_resource_account_name(data[3])

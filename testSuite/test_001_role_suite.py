@@ -40,7 +40,7 @@ class testRoleSuite(unittest.TestCase):
 
 	def test_role(self):
 
-		u'''添加系统级角色'''
+		# u'''添加系统级角色'''
 		self.testrole.add_sysrole_001()
 		u'''添加部门管理员'''
 		self.testrole.add_dptrole_002()

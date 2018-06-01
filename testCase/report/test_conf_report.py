@@ -128,6 +128,7 @@ class testConfReport():
 			try:
 				#如果不是第一行标题，则读取数据
 				if dataRow != 0 :
+					time.sleep(2)
 					self.confReport.switch_to_conf_report()
 					self.confReport.select_report(data[2])
 					self.confReport.click_del_module()

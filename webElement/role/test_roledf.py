@@ -39,7 +39,7 @@ class Role(object):
 	def add(self):
 		try:
 			self.frameElem.from_frame_to_otherFrame("mainFrame")
-			self.getElem.find_element_wait_and_click("id", self.ADD_ROLE)
+			self.getElem.find_element_wait_and_click_EC("id", self.ADD_ROLE)
 		except Exception:
 			print("Click the Add button to fail")
 
@@ -91,7 +91,7 @@ class Role(object):
 		#option位于是第几个
 		manage_index = index + 1
 		option_xpath = "//select[@id='allRoles']/option[" + str(manage_index) + "]"
-		selem = self.getElem.find_element_with_wait("id", "allRoles")
+		selem = self.getElem.find_element_with_wait_EC("id", "allRoles")
 
 		#查看元素是否被选中
 		option_selected = self.selectElem.select_element_check("xpath", option_xpath)
@@ -103,8 +103,8 @@ class Role(object):
 	def manage_role_add(self, index):
 		try:
 			self.frameElem.from_frame_to_otherFrame("mainFrame")
-			self.getElem.find_element_wait_and_click("id", "add_roles")
-			selem = self.getElem.find_element_with_wait("id", "allRoles")
+			self.getElem.find_element_wait_and_click_EC("id", "add_roles")
+			selem = self.getElem.find_element_with_wait_EC("id", "allRoles")
 			self.selectElem.deselect_element_by_index(selem, index)
 		except Exception:
 			print("Click the manageAdd button to fail")
@@ -117,7 +117,7 @@ class Role(object):
 		#option位于是第几个
 		opt_index = index + 1
 		option_xpath = "//select[@id='allOtherPrivileges']/option[" + str(opt_index) + "]"
-		selem = self.getElem.find_element_with_wait("id", "allOtherPrivileges")
+		selem = self.getElem.find_element_with_wait_EC("id", "allOtherPrivileges")
 
 		#查看元素是否被选中
 		option_selected = self.selectElem.select_element_check("xpath", option_xpath)
@@ -125,7 +125,7 @@ class Role(object):
 		if option_selected is False:
 			self.selectElem.select_element_by_index(selem, index)
 
-		self.getElem.find_element_wait_and_click("id", "add_privileges")
+		self.getElem.find_element_wait_and_click_EC("id", "add_privileges")
 		#对已选择的角色取消选择
 		self.selectElem.deselect_element_by_index(selem, index)
 
@@ -137,7 +137,7 @@ class Role(object):
 		try:
 			row = self.cmf.find_row_by_name(rolename, "fortRoleName")
 			update_xpath = "/html/body/form/div/div[6]/div[2]/div/table/tbody/tr[" + str(row) + "]/td[6]/input[1]"
-			self.getElem.find_element_wait_and_click("xpath", update_xpath)
+			self.getElem.find_element_wait_and_click_EC("xpath", update_xpath)
 		except Exception:
 			print("Click the Edit button to fail")
 
@@ -149,7 +149,7 @@ class Role(object):
 		try:
 			row = self.cmf.find_row_by_name(rolename, "fortRoleName")
 			update_xpath = "/html/body/form/div/div[6]/div[2]/div/table/tbody/tr[" + str(row) + "]/td[6]/input[2]"
-			self.getElem.find_element_wait_and_click("xpath", update_xpath)
+			self.getElem.find_element_wait_and_click_EC("xpath", update_xpath)
 		except Exception:
 			print("Click the delete button to fail")
 
@@ -159,7 +159,7 @@ class Role(object):
 	'''
 	def edit_rolename(self, rolename):
 		try:
-			self.getElem.find_element_wait_and_clear("id", self.FORTROLE_NAME)
+			self.getElem.find_element_wait_and_clear_EC("id", self.FORTROLE_NAME)
 			self.getElem.find_element_wait_and_sendkeys("id", self.FORTROLE_NAME, rolename)
 		except Exception:
 			print("Role name fill in error")
@@ -170,7 +170,7 @@ class Role(object):
 	'''
 	def edit_shortname(self, shortname):
 		try:
-			self.getElem.find_element_wait_and_clear("id", self.FORTROLE_SHORTNAME)
+			self.getElem.find_element_wait_and_clear_EC("id", self.FORTROLE_SHORTNAME)
 			self.getElem.find_element_wait_and_sendkeys("id", self.FORTROLE_SHORTNAME, shortname)
 		except Exception:
 			print("Name abbreviation fill in error")

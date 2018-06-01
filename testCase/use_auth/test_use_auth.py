@@ -201,7 +201,6 @@ class UseAuthorization():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
-                    self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.useauth.add_authcode_name(data[2])
                     self.useauth.click_updateAuth_button()
                     self.frameElem.switch_to_content()

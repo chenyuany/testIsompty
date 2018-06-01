@@ -65,8 +65,6 @@ class EnvelopePage(object):
             self.getElem.find_element_wait_and_sendkeys("id", self.LOGOIMAGE, fileurl)
             time.sleep(2)
             self.getElem.find_element_wait_and_click_EC("id", self.SAVE_IMAGES_BUTTON)
-            self.frameElem.switch_to_content()
-            self.cmf.click_msg_button(1)
         except Exception:
             print("upload passwd envelope image is error")
 

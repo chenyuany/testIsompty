@@ -58,7 +58,7 @@ class testDoubleSuite(unittest.TestCase):
 
 	def tearDown(self):
 		#双人授权后置条件
-		self.comsuit.dualmandate_module_post_condition()
+		# self.comsuit.dualmandate_module_post_condition()
 		initDriver().close_driver(self.browser)
 
 if __name__ == "__main__":

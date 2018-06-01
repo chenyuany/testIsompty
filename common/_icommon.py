@@ -41,7 +41,7 @@ class getElement(object):
             - timeout:超时前等待的时间
         return：查找的元素对象
     '''    
-    def find_element_with_wait(self,type,value,timeout=1):
+    def find_element_with_wait(self,type,value,timeout=5):
         if type == "xpath":
             return WebDriverWait(self.driver,timeout).until(lambda x:x.find_element_by_xpath(value))
         elif type == "id":
@@ -66,7 +66,7 @@ class getElement(object):
             - timeout:超时前等待的时间
         return：定位元素并点击该元素
     '''
-    def find_element_with_wait_clickable_and_click(self,type,value,timeout=10):
+    def find_element_with_wait_clickable_and_click(self,type,value,timeout=5):
             if type == "id":
                 WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((By.ID, value))).click()
             elif type == "xpath":
@@ -91,7 +91,7 @@ class getElement(object):
             - timeout:超时前等待的时间
         return：定位元素并点击该元素
     '''
-    def find_element_with_wait_EC(self,type,value,timeout=10):
+    def find_element_with_wait_EC(self,type,value,timeout=5):
             if type == "id":
                 return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value)))
             elif type == "xpath":
@@ -109,7 +109,6 @@ class getElement(object):
             elif type == "plt":
                 return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, value)))
 
-    
     u'''等待元素出现后再定位元素并发送键值
         parameter:
             - type:定位的类型，如id,name,tag name,class name,css,xpath等
@@ -118,7 +117,7 @@ class getElement(object):
             - timeout:超时前等待的时间 
         return：定位元素并发送键值
     '''    
-    def find_element_wait_and_sendkeys(self,type,value,key,timeout=1):
+    def find_element_wait_and_sendkeys(self,type,value,key,timeout=5):
         if type == "xpath":
             return WebDriverWait(self.driver,timeout).until(lambda x:x.find_element_by_xpath(value)).send_keys(key)
         elif type == "id":
@@ -136,7 +135,6 @@ class getElement(object):
         elif type == "plt":
             return WebDriverWait(self.driver,timeout).until(lambda x:x.find_element_by_partial_link_text(value)).send_keys(key)
 
-    
     u'''等待元素出现后再定位元素并点击
         parameter:
             - type:定位的类型，如id,name,tag name,class name,css,xpath等
@@ -144,7 +142,7 @@ class getElement(object):
             - timeout:超时前等待的时间
         return：定位元素并点击该元素
     '''    
-    def find_element_wait_and_click(self,type,value,timeout=1):
+    def find_element_wait_and_click(self,type,value,timeout=5):
         if type == "xpath":
             return WebDriverWait(self.driver,timeout).until(lambda x:x.find_element_by_xpath(value)).click()
         elif type == "id":
@@ -169,23 +167,24 @@ class getElement(object):
             - timeout:超时前等待的时间
         return：定位元素并点击该元素
     '''
-    def find_element_wait_and_click_EC(self,type,value,timeout=10):
-            if type == "id":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value))).click()
-            elif type == "xpath":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, value))).click()
-            elif type == "name":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.NAME, value))).click()
-            elif type == "tagname":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.TAG_NAME, value))).click()
-            elif type == "classname":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CLASS_NAME, value))).click()
-            elif type == "css":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, value))).click()
-            elif type == "link":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.LINK_TEXT, value))).click()
-            elif type == "plt":
-                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, value))).click()
+    def find_element_wait_and_click_EC(self,type,value,timeout=5):
+        time.sleep(1)
+        if type == "id":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value))).click()
+        elif type == "xpath":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, value))).click()
+        elif type == "name":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.NAME, value))).click()
+        elif type == "tagname":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.TAG_NAME, value))).click()
+        elif type == "classname":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CLASS_NAME, value))).click()
+        elif type == "css":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, value))).click()
+        elif type == "link":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.LINK_TEXT, value))).click()
+        elif type == "plt":
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, value))).click()
 
     u'''等待元素出现后再定位元素并获取元素的文本
         parameter:
@@ -194,7 +193,7 @@ class getElement(object):
             - timeout:超时前等待的时间  
         return：获取定位元素的文本
     '''    
-    def find_element_wait_and_get_text(self,type,value,timeout=1):
+    def find_element_wait_and_get_text(self,type,value,timeout=5):
         if type == "xpath":
             return WebDriverWait(self.driver,timeout).until(lambda x:x.find_element_by_xpath(value)).text
         elif type == "id":
@@ -250,7 +249,6 @@ class getElement(object):
             - timeout:超时前等待的时间
     '''
     def find_element_wait_and_clear(self, type, value, timeout=5):
-
 		if type == "id":
 			WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value))).click()
 			WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value))).clear()
@@ -283,7 +281,7 @@ class getElement(object):
             - timeout:超时前等待的时间
     '''
     def find_element_wait_and_clear_EC(self, type, value, timeout=5):
-    
+        time.sleep(1)
         if type == "id":
             WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.ID, value))).clear()
         elif type == "xpath":
@@ -555,6 +553,7 @@ class frameElement(object):
             - frameName:要跳转到的frame的名字      
     '''
     def from_frame_to_otherFrame(self,frameName):
+        time.sleep(1)
         self.switch_to_content()
         
         if frameName == "mainFrame":
@@ -965,14 +964,12 @@ class commonFun(object):
             self.log.error_detail("checkbox is not visible",e)
 #            print "checkbox is not visible:" + str(e)
 
-
     u'''点击返回按钮'''
     def back(self):
         try:
-            self.frameElem.switch_to_content()
-            self.frameElem.switch_to_main()
-            time.sleep(1)
+            self.frameElem.from_frame_to_otherFrame("mainFrame")
             self.getElem.find_element_wait_and_click("id", "history_skip")
+            time.sleep(2)
         except Exception:
             print("Click the return button to fail")            
 
@@ -1070,7 +1067,7 @@ class commonFun(object):
                     if fortNameValue_text == namevalue:
                         break
         except Exception:
-            print namevalue + "is not exsit."
+            print(namevalue + "is not exsit.")
         return row
 
 # if __name__ == "__main__" :

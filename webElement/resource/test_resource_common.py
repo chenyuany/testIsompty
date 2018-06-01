@@ -135,9 +135,6 @@ class Resource(object):
 			self.getElem.find_element_wait_and_clear('id', self.RESOURCE_IP)
 			self.getElem.find_element_wait_and_sendkeys('id', self.RESOURCE_IP, ipdress)
 			time.sleep(3)
-			self.getElem.find_element_wait_and_click_EC("id", "spanid")
-			self.getElem.find_element_with_wait_EC("classname", "ip_succ")
-			time.sleep(5)
 		except Exception as e:
 			print "resourceip is error :" + str(e)
 
@@ -146,10 +143,13 @@ class Resource(object):
 	       - deptname:部门名称
 	'''
 	def set_depart(self, deptname):
-		self.frameElem.from_frame_to_otherFrame("mainFrame")
-		depart = self.cnEn.is_float(deptname)
-		time.sleep(3)
-		self.select_depart_common(self.ATTRIBUTION_DEPARTMENT, "tree_1_switch", depart)
+		try:
+			self.frameElem.from_frame_to_otherFrame("mainFrame")
+			depart = self.cnEn.is_float(deptname)
+			self.select_depart_common(self.ATTRIBUTION_DEPARTMENT, "tree_1_switch", depart)
+			time.sleep(3)
+		except Exception as e:
+			print "deptname is error :" + str(e)
 
 	u'''选择所有运维协议'''
 	def select_all_agreement(self):
@@ -361,6 +361,18 @@ class Resource(object):
 	def click_save_button(self):
 		try:
 			self.frameElem.from_frame_to_otherFrame("mainFrame")
+			time.sleep(6)
+			self.getElem.find_element_wait_and_click_EC("id", "spanid")
+			self.getElem.find_element_with_wait_EC("classname", "ip_succ")
+			self.getElem.find_element_wait_and_click_EC("id", self.SAVE_BUTTON)
+		except Exception as e:
+			print "resource save button error:" + str(e)
+
+	u'''点击保存按钮'''
+	def resoure_save_button(self):
+		try:
+			self.frameElem.from_frame_to_otherFrame("mainFrame")
+			time.sleep(1)
 			self.getElem.find_element_wait_and_click_EC("id", self.SAVE_BUTTON)
 		except Exception as e:
 			print "resource save button error:" + str(e)

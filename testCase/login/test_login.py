@@ -1,14 +1,7 @@
 #coding=utf-8
-import sys
+import sys,time
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
-from threading import Thread
-
-sys.path.append("/testIsomp/common/")
-from _excelRead import excelRead
-from _cnEncode import cnEncode
-from _transCoding import jsonTranscoding
 
 sys.path.append("/testIsomp/testData/")
 from _testDataPath import dataFileName
@@ -19,9 +12,12 @@ from loginElement import *
 sys.path.append("/testIsomp/common")
 from _icommon import commonFun
 from _icommon import log
-from _fileRead import fileRead
-from _initDriver import initDriver
 from _log import log
+sys.path.append("/testIsomp/webElement/user/")
+from userElement import UserPage
+
+sys.path.append("/testIsomp/testSuite")
+from common_suite_file import CommonSuiteData
 
 class testLogin(object):
     
@@ -31,6 +27,8 @@ class testLogin(object):
         self.loginFun = loginPage(self.driver)
         self.cmf = commonFun(self.driver)
         self.dataFile = dataFileName()
+        self.userElem = UserPage(self.driver)
+        self.commonSuite = CommonSuiteData(self.driver)
 
     u'''获取测试数据
     	Parameters:
@@ -64,6 +62,13 @@ class testLogin(object):
                 #如果不是第一行标题，则读取数据
                 if dataRow != 0:
                     if sheetname == 'default':
+                        if dataRow == 4:
+                            time.sleep(2)
+                            self.commonSuite.login_and_switch_to_sys()
+                            self.commonSuite.switch_to_moudle(u"运维管理",u"用户")
+                            time.sleep(1)
+                            self.userElem.change_user_status_on("gyrlogin2")
+                            self.commonSuite.user_quit()
                         self.loginFun.login(data)
 #                           if dataRow == 1:
 #                               loginFun.set_max_login_count()

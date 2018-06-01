@@ -52,9 +52,9 @@ class UseAuthSuite(unittest.TestCase):
         #logo包校验
         self.useAuthCase.check_logo_upgrade_004()
         #上传授权码
-        self.useAuthCase.add_product_information_005()
+        # self.useAuthCase.add_product_information_005()
         #上传授权码校验
-        self.useAuthCase.check_updata_auth_006()
+        # self.useAuthCase.check_updata_auth_006()
         
     def tearDown(self):
         self.commonSuite.use_auth_module_post_condition()

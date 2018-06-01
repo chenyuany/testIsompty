@@ -91,6 +91,7 @@ class testEnvelope(object):
             try:
                 #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.envelopePage.envelope_upload(data[2])
                     self.frameElem.switch_to_content()
                     self.cmf.test_win_check_point("xpath", EnvelopeMsg, data, flag)

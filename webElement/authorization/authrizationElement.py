@@ -388,7 +388,6 @@ class AuthorizationPage():
                 if self.getElem.is_element_exsit("xpath",path):
                     name_elem = self.getElem.find_element_with_wait_EC("xpath",path)
                     if name_elem.text == rename:
-                        print row
                         update_xpath = "//table[@id='content_table']/tbody/tr[" + str(row) + "]/td[1]/span[1]/input[1]"
                         time.sleep(1)
                         selem = self.getElem.find_element_with_wait_EC('xpath',update_xpath)

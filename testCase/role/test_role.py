@@ -222,9 +222,6 @@ class testRole(object):
 					self.role.delete(data[2])
 					self.frameElem.switch_to_content()
 					self.cmf.test_win_check_point("xpath", roleMsg, data, flag)
-					#校验删除后的角色是否存在
-					if self.cmf.is_namevalue_exsit(data[2], "fortRoleName"):
-						print("The super administrator has been deleted")
 			except Exception as e:
 				print ("Deleting the super administrator failed:" + str(e))
 

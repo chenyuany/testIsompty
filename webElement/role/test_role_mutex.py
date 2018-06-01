@@ -45,7 +45,7 @@ class roleMutex(object):
 		manage_index = index + 1
 		option_xpath = "/html/body/div/div[3]/div["+str(number)+"]/table/tbody/tr/td[1]/select/option[" + str(manage_index) + "]"
 		select_xpath = "/html/body/div/div[3]/div["+str(number)+"]/table/tbody/tr/td[1]/select"
-		selem = self.getElem.find_element_with_wait("xpath", select_xpath)
+		selem = self.getElem.find_element_with_wait_EC("xpath", select_xpath)
 
 		#查看元素是否被选
 		option_selected = self.selectElem.select_element_check("xpath", option_xpath)
@@ -63,7 +63,7 @@ class roleMutex(object):
 		manage_index = index + 1
 		option_xpath = "/html/body/div/div[3]/div["+str(number)+"]/table/tbody/tr/td[3]/select/option[" + str(manage_index) + "]"
 		select_xpath = "/html/body/div/div[3]/div["+str(number)+"]/table/tbody/tr/td[3]/select"
-		selem = self.getElem.find_element_with_wait("xpath", select_xpath)
+		selem = self.getElem.find_element_with_wait_EC("xpath", select_xpath)
 
 		#查看元素是否被选
 		option_selected = self.selectElem.select_element_check("xpath", option_xpath)
@@ -117,7 +117,7 @@ class roleMutex(object):
 	def check_select_role(self, index):
 
 		self.frameElem.from_frame_to_otherFrame("mainFrame")
-		selem = self.getElem.find_element_with_wait("name", "select_role")
+		selem = self.getElem.find_element_with_wait_EC("name", "select_role")
 		self.selectElem.select_element_by_index(selem, index)
 
 	u'''校验选择互斥角色
@@ -126,7 +126,7 @@ class roleMutex(object):
 	'''
 	def check_select_mutex_role(self, index):
 		self.frameElem.from_frame_to_otherFrame("mainFrame")
-		selem = self.getElem.find_element_with_wait("name", "select_mutex_role")
+		selem = self.getElem.find_element_with_wait_EC("name", "select_mutex_role")
 		self.selectElem.select_element_by_index(selem, index)
 
 	u'''校验点击保存按钮'''
@@ -145,7 +145,7 @@ class roleMutex(object):
 		#获取用户位于第几行
 		userrow = self.cmf.find_row_by_name(username, "fortUserAccount")
 		role_xpath = "/html/body/form/div/div[7]/div[2]/div/table/tbody/tr[" + str(userrow) + "]/td[9]/input[2]"
-		self.getElem.find_element_wait_and_click("xpath", role_xpath)
+		self.getElem.find_element_wait_and_click_EC("xpath", role_xpath)
 
 	u'''点击用户的编辑按钮
 	   Parameters:
@@ -159,7 +159,7 @@ class roleMutex(object):
 		#获取用户位于第几行
 		userrow = self.cmf.find_row_by_name(username, "fortUserAccount")
 		role_xpath = "/html/body/form/div/div[7]/div[2]/div/table/tbody/tr[" + str(userrow) + "]/td[9]/input[1]"
-		self.getElem.find_element_wait_and_click("xpath", role_xpath)
+		self.getElem.find_element_wait_and_click_EC("xpath", role_xpath)
 
 	u'''选择所有角色
 	   Parameters:
@@ -170,7 +170,7 @@ class roleMutex(object):
 		#option位于第几个
 		manage_index = index + 1
 		option_xpath = "//select[@id='Roles']/option[" + str(manage_index) + "]"
-		selem = self.getElem.find_element_with_wait("id", "Roles")
+		selem = self.getElem.find_element_with_wait_EC("id", "Roles")
 
 		#查看元素是否被选中
 		option_selected = self.selectElem.select_element_check("xpath", option_xpath)
@@ -182,7 +182,7 @@ class roleMutex(object):
 		try:
 			self.frameElem.from_frame_to_otherFrame("mainFrame")
 			self.getElem.find_element_wait_and_click_EC("id", "add_roles")
-			selem = self.getElem.find_element_with_wait("id", "Roles")
+			selem = self.getElem.find_element_with_wait_EC("id", "Roles")
 			self.selectElem.deselect_element_by_index(selem, index)
 		except Exception:
 			print("Click add role button to fail")
@@ -240,7 +240,7 @@ class roleMutex(object):
 	def uncheck(self, select_mutex_id, mutexname):
 
 		#获取当前角色互斥select
-		selem = self.getElem.find_element_with_wait("id", select_mutex_id)
+		selem = self.getElem.find_element_with_wait_EC("id", select_mutex_id)
 		mutextarges = selem.find_elements_by_tag_name("option")
 
 		#循环option对象

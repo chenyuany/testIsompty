@@ -76,7 +76,7 @@ class Dobapproval(object):
 	'''
 	def check_ico_len(self, rename):
 		self.frameElem.from_frame_to_otherFrame("rigthFrame")
-		time.sleep(3)
+		time.sleep(5)
 		row = self.acproval.select_resoure_sso(rename)
 		self.acproval.click_refresh_icon(rename)
 		ico_xpath = "/html/body/div[1]/div[7]/div[2]/div[1]/table/tbody/tr[" + str(
@@ -117,11 +117,11 @@ class Dobapproval(object):
 
 	u'''调用新浏览器'''
 	def call_other_browsers(self):
-		newbrowser = webdriver.Ie()
-		# newbrowser = webdriver.Chrome()
+		newbrowser = webdriver.Edge()
+		# newbrowser = webdriver.Firefox()
 		#IE窗口最大化
 		newbrowser.maximize_window()
-		newbrowser.get("https://172.16.10.155")
+		newbrowser.get("https://172.16.10.98")
 		newbrowser.get("javascript:document.getElementById('overridelink').click();")
 		return newbrowser
 
@@ -319,16 +319,21 @@ class Dobapproval(object):
 				#如果不是第1行,读取数据
 				if dataRow != 0:
 					newbrowser = self.call_other_browsers()
+					time.sleep(3)
 					self.user_remote_approval(newbrowser, data[1])
+					time.sleep(3)
 					self.click_menu(newbrowser, u"流程控制", u"流程任务")
+					time.sleep(3)
 					self.click_remote_approval_by_number(newbrowser, number)
+					time.sleep(3)
 					self.process_remote_is_agree_approval(newbrowser, data[2])
 					self.set_process_remote_description(newbrowser, data[3])
 					self.click_remote_submit(newbrowser)
 					self.click_remote_msg_button(newbrowser)
+					time.sleep(3)
 					self.remote_back(newbrowser)
-					self.driver.implicitly_wait(5)
+					time.sleep(3)
 					self.remote_quit(newbrowser)
-					newbrowser.quit()
+					newbrowser.close()
 			except Exception as e:
 				print ("expired_approvel fail:" + str(e))

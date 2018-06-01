@@ -471,15 +471,9 @@ class User():
 					
 					#清空标识状态
 					flag = False
-					
-					#判断删除的账号是否存在
-					if not self.cmf.is_namevalue_exsit(data[2],"fortUserAccount"):
-						print ("del user success")					
 			except Exception as e:
 				print ("DelOneUser fail: ") + str(e)
 		self.log.log_end("DelOneUser")
-	
-	
 
 	u'''删除全部用户'''
 	def del_all_user_008(self):

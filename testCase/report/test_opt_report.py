@@ -179,7 +179,7 @@ class testOptReport():
 			try:
 				#如果不是第一行标题，则读取数据
 				if dataRow != 0 :
-					#self.optReport.switch_to_opt_report()
+					time.sleep(2)
 					self.confReport.select_report(data[2])
 					self.confReport.click_del_module()
 					#判断测试项是否通过

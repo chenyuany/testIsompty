@@ -78,6 +78,8 @@ class UseAuth():
     #填写授权码
     def add_authcode_name(self,authCode):
         try:
+            time.sleep(2)
+            self.frameElem.from_frame_to_otherFrame("mainFrame")
             self.getElem.find_element_wait_and_clear_EC('id',self.AUTHCODE)
             return self.user.set_common_func(authCode,self.AUTHCODE)
         except Exception as e:
@@ -99,9 +101,9 @@ class UseAuth():
         try:
             self.frameElem.from_frame_to_otherFrame("mainFrame")
             if index == 1:
-                value = "H://testIsomp/testData/envelope_image.png"
+                value = "E://testIsomp/testData/envelope_image.png"
             elif index == 2:
-                value = "H://testIsomp/testData/use_of_authorization.xlsx"
+                value = "E://testIsomp/testData/use_of_authorization.xlsx"
             self.getElem.find_element_wait_and_sendkeys('id',self.LOGO_IMAGE,value)
         except Exception as e:
             print ("click  and check up logo button error: ") + str(e)

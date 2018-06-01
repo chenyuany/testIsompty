@@ -43,7 +43,6 @@ class testPasswdEnvelopeSuit(unittest.TestCase):
         #检验密码信封
         self.testenvelope.check_passwd_envelope_005()
 
-
     #后置条件
     def tearDown(self):
         self.comsuit.passwd_envelope_module_post_condition()
