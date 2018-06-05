@@ -627,11 +627,13 @@ class CommonSuiteData():
     
     u'''切换至部门级'''    
     def sys_switch_to_dep(self):
+        time.sleep(2)
         roleList = self.login_and_switch_to_common("login")
         self.cmf.select_role_by_text(roleList[1])
     
     u'''切换至系统级'''    
     def dep_switch_to_sys(self):
+        time.sleep(2)
         roleList = self.login_and_switch_to_common("login")
         self.cmf.select_role_by_text(roleList[0]) 
     
@@ -866,6 +868,7 @@ class CommonSuiteData():
         for dataRow in rowList:
             data = user_data[dataRow]
             if dataRow != 0:
+                time.sleep(2)
                 self.userElem.operate_delete(data[1])
                 self.frameElem.switch_to_content()
                 self.cmf.click_login_msg_button()
@@ -1042,6 +1045,7 @@ class CommonSuiteData():
         self.switch_to_moudle(u"报表管理", u"审计报表")
         
     def opt_report_module_post_condition(self):
+        time.sleep(2)
         self.sys_switch_to_dep()
         self.del_user_data_module([39])
         self.del_resource_modele([18])

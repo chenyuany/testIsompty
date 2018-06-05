@@ -159,6 +159,7 @@ class PwdStrategy(object):
     #返回按钮
     def return_button(self):
         try:
+            time.sleep(2)
             self.frameElem.from_frame_to_otherFrame("mainFrame")
             back_button = self.getElem.find_element_with_wait_EC('id',self.RETURN_BUTTON)
             if back_button.is_displayed():
@@ -174,6 +175,7 @@ class PwdStrategy(object):
     '''      
     def set_common_func(self,var_text,value):
         try:
+            time.sleep(3)
             self.frameElem.from_frame_to_otherFrame("mainFrame")
             revar_text = self.cnEnde.is_float(var_text)
             var_elem =self.getElem.find_element_with_wait_EC('id',value)

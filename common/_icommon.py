@@ -696,6 +696,7 @@ class commonFun(object):
             - text:角色名称
     '''    
     def select_role_by_text(self,text):
+        time.sleep(2)
         self.frameElem.from_frame_to_otherFrame("topFrame")
         
         self.getElem.find_element_wait_and_click("id","js_z")
@@ -967,6 +968,7 @@ class commonFun(object):
     u'''点击返回按钮'''
     def back(self):
         try:
+            time.sleep(2)
             self.frameElem.from_frame_to_otherFrame("mainFrame")
             self.getElem.find_element_wait_and_click("id", "history_skip")
             time.sleep(2)

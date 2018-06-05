@@ -35,6 +35,7 @@ class Accountmgr(object):
 	'''
 	def click_account_manage_button(self, resourcename):
 		rename = self.cnEn.is_float(resourcename)
+		time.sleep(2)
 
 		self.frameElem.from_frame_to_otherFrame("mainFrame")
 		row = self.cmf.find_row_by_name(rename, "fortResourceName")
@@ -138,6 +139,7 @@ class Accountmgr(object):
 
 	u'''点击账号保存按钮'''
 	def click_save_account(self):
+		time.sleep(2)
 		self.frameElem.from_frame_to_otherFrame("mainFrame")
 		self.getElem.find_element_wait_and_click_EC("id", "save_account")
 
@@ -194,6 +196,7 @@ class Accountmgr(object):
 	      - accountname:传入的要编辑的资源账号名称
 	'''
 	def set_authorize(self):
+		time.sleep(2)
 		self.frameElem.from_frame_to_otherFrame("mainFrame")
 		elem = self.getElem.find_element_with_wait_EC("id", "fortIsAllowAuthorized")
 		if elem.is_selected() == False:

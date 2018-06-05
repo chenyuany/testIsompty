@@ -61,12 +61,13 @@ class testLogin(object):
             try:
                 #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(3)
                     if sheetname == 'default':
                         if dataRow == 4:
                             time.sleep(2)
                             self.commonSuite.login_and_switch_to_sys()
                             self.commonSuite.switch_to_moudle(u"运维管理",u"用户")
-                            time.sleep(1)
+                            time.sleep(2)
                             self.userElem.change_user_status_on("gyrlogin2")
                             self.commonSuite.user_quit()
                         self.loginFun.login(data)
@@ -100,6 +101,7 @@ class testLogin(object):
         u'''可以循环设定数据测试系统登录'''
         sheets_name = ['default','ad','pwd_ad','radius']#'default','ad','pwd_ad','radius'
         for sheetname in sheets_name:
+            time.sleep(3)
             self.login_type(sheetname)
         self.log.log_end("login")
         

@@ -117,7 +117,7 @@ class Dobapproval(object):
 
 	u'''调用新浏览器'''
 	def call_other_browsers(self):
-		newbrowser = webdriver.Edge()
+		newbrowser = webdriver.Ie()
 		# newbrowser = webdriver.Firefox()
 		#IE窗口最大化
 		newbrowser.maximize_window()

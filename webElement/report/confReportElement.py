@@ -131,9 +131,11 @@ class ConfReportPage():
     '''    
     def set_common_select_elem_by_text(self,var_text,value):
         try:
+            time.sleep(2)
             revar_text = self.cnEnde.is_float(var_text)
             select_elem = self.getElem.find_element_with_wait_EC('id',value)
-            self.selectElem.select_element_by_visible_text(select_elem,str(var_text))
+            time.sleep(2)
+            self.selectElem.select_element_by_visible_text(select_elem,revar_text)
         except Exception as e:
             print ("selected select element option  by visible text error: ") + str(revar_text) + str(e)
     

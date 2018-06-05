@@ -125,6 +125,7 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.add_pwd_button()
                     self.PwdStr.set_pwd_name(data[2])
@@ -160,6 +161,7 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.edit(data[2])
                     self.PwdStr.set_pwd_name(data[3])
@@ -195,6 +197,7 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.add_pwd_button()
                     self.PwdStr.set_pwd_name(data[2])
@@ -254,6 +257,7 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.del_sing_strategy(data[2])
                     self.frameElem.switch_to_content()
@@ -282,6 +286,7 @@ class PasswordStr():
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
                     self.switch_to_session_module()
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.set_pwd_strategy(data[4])
                     self.session.add_session(data[2])
@@ -309,6 +314,7 @@ class PasswordStr():
                 #如果不是第一行标题，则读取数据
                 if dataRow != 0:
                     self.conuser.switch_to_user_module()
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.user_edit(data[2])
                     self.PwdStr.set_pwd(data[9])
@@ -339,6 +345,7 @@ class PasswordStr():
                     time.sleep(2)
                     self.commonsuite.sys_switch_to_dep()
                     self.switch_to_resource_module()
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.resource_edit(data[2])
                     self.PwdStr.set_resource_strategy(data[8])
@@ -398,8 +405,10 @@ class PasswordStr():
             try:
             #如果不是第一行标题，则读取数据
                 if dataRow != 0:
+                    time.sleep(2)
                     self.commonsuite.dep_switch_to_sys()
                     self.switch_to_pwdStr_module()
+                    time.sleep(2)
                     self.frameElem.from_frame_to_otherFrame("mainFrame")
                     self.PwdStr.select_all_button()
                     self.PwdStr.del_button()

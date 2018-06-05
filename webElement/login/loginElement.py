@@ -164,6 +164,7 @@ class loginPage(object):
         success = False
         try:
             #self.frameElem.switch_to_top()
+            time.sleep(5)
             self.frameElem.from_frame_to_otherFrame('topFrame')
             text = self.getElem.find_element_wait_and_get_text("id","message",10)
 #            print text

@@ -120,8 +120,11 @@ class DatabaseResource(object):
 			self.resource.set_admin_pwd(data[18])
 			#口令确认
 			self.resource.set_confirm_pwd(data[19])
-		time.sleep(1)
-		self.resource.click_save_button()
+		time.sleep(2)
+		if data[5] != "":
+			self.resource.click_save_button()
+		else:
+			self.resource.resoure_save_button()
 
 	u'''填写资源名称'''
 	def set_resource_name(self,resourceName):

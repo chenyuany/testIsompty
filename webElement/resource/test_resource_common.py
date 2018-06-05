@@ -370,9 +370,10 @@ class Resource(object):
 
 	u'''点击保存按钮'''
 	def resoure_save_button(self):
+		time.sleep(3)
 		try:
 			self.frameElem.from_frame_to_otherFrame("mainFrame")
-			time.sleep(1)
+			time.sleep(3)
 			self.getElem.find_element_wait_and_click_EC("id", self.SAVE_BUTTON)
 		except Exception as e:
 			print "resource save button error:" + str(e)
